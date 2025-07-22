@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
+@import "tailwindcss/preflight";
+
 @tailwind utilities;
 
 * {
@@ -31,7 +31,7 @@ canvas {
 }
 
 @layer utilities {
-  .flex-center {  
+  .flex-center {
     @apply flex items-center justify-center;
   }
 

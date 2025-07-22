@@ -1,8 +1,14 @@
+import Hero from "./components/Hero.jsx";
+import Navbar from "./components/Navbar.jsx";
+import Highlights from "./components/Highlights.jsx";
+
 function App() {
   return (
-    <p className="text-3xl">
-      Click on the Vite and React logos to learn more
-    </p>
+    <main className="bg-black">
+      <Navbar></Navbar>
+      <Hero></Hero>
+      <Highlights></Highlights>
+    </main>
   );
 }
 
