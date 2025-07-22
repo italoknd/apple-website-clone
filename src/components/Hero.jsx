@@ -22,15 +22,29 @@ const Hero = () => {
     };
   }, []);
 
-  useGSAP(
-    () =>
-      gsap.to(".hero-title", {
-        opacity: 1,
+  useGSAP(() => {
+    gsap.to(".hero-title", {
+      opacity: 1,
+      ease: "power1.in",
+      delay: 2.1,
+    });
+
+    gsap.fromTo(
+      "#cta",
+      {
+        opacity: 0,
         ease: "power1.in",
-        delay: 0.9,
-      }),
-    []
-  );
+        delay: 2.1,
+        y: 200,
+      },
+      {
+        ease: "power1.out",
+        opacity: 1,
+        delay: 2.1,
+        y: 0,
+      }
+    );
+  }, []);
 
   return (
     <section className="w-full nav-height bg-black relative">
@@ -48,6 +62,17 @@ const Hero = () => {
           >
             <source src={videoSrc} type="video/mp4" />
           </video>
+        </div>
+
+        {/* CTA SECTION */}
+        <div
+          id="cta"
+          className="flex flex-col items-center opacity-0 translate-y-20"
+        >
+          <a href="#highlights" className="btn">
+            Buy
+          </a>
+          <p className="font-normal text-xl">From $199/month or $999</p>
         </div>
       </div>
     </section>
