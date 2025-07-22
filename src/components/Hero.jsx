@@ -27,7 +27,7 @@ const Hero = () => {
       gsap.to(".hero-title", {
         opacity: 1,
         ease: "power1.in",
-        delay: 1,
+        delay: 0.9,
       }),
     []
   );
@@ -36,18 +36,19 @@ const Hero = () => {
     <section className="w-full nav-height bg-black relative">
       <div className="h-5/6 w-full flex-center flex-col">
         <p className="hero-title">iPhone 15 Pro</p>
-      </div>
 
-      <div className="md:w-10/12 w-9/12">
-        <video
-          className="pointer-events-none"
-          autoPlay
-          muted
-          playsInline={true}
-          key={videoSrc}
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
+        {/* VIDEO */}
+        <div className="md:w-10/12 w-9/12 mt-2">
+          <video
+            className="pointer-events-none  "
+            autoPlay
+            muted
+            playsInline={true}
+            key={videoSrc}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        </div>
       </div>
     </section>
   );
