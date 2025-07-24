@@ -36,10 +36,9 @@ const Hightlights = () => {
             <img src={rightImg} alt="right" />
           </div>
         </div>
-
-        {/* something below */}
-        <VideCarousel />
       </div>
+
+      <VideoCarousel />
     </div>
   );
 };
