@@ -31,11 +31,10 @@ const VideoCarousel = () => {
         setVideo((prev) => ({ ...prev, startPlay: true, isPlaying: true }));
       },
     });
-    
   }, [isEnd, videoId]);
 
   useEffect(() => {
-    if (loadedData.lenght > 3) {
+    if (loadedData.length > 3) {
       if (!isPlaying) {
         videoRef.current[videoId].pause();
       } else {
@@ -45,12 +44,27 @@ const VideoCarousel = () => {
   }, [videoId, startPlay, isPlaying, loadedData]);
 
   useEffect(() => {
-    const currentProgress = 0;
+    let currentProgress = 0;
     let span = videoSpanRef.current;
 
     if (span[videoId]) {
       let anim = gsap.to(span[videoId], {
-        onUpdate: () => {},
+        onUpdate: () => {
+          const progress = Math.ceil(anim.progress() * 1000);
+
+          if (progress !== currentProgress) {
+            currentProgress = progress;
+
+            gsap.to(videoDivRef.current[videoId], {
+              width:
+                window.innerWidth < 760
+                  ? "10vw"
+                  : window.innerWidth < 1200
+                  ? "10vw"
+                  : "4vw",
+            });
+          }
+        },
         onComplete: () => {},
       });
     }
@@ -117,7 +131,7 @@ const VideoCarousel = () => {
                 </video>
               </div>
 
-              <div className="absolute top-12 lef-[5%] z-10 ml-10">
+              <div className="absolute top-12 lef-[5%] z-10 md:ml-5 ml-2">
                 {list.textLists.map((text, idx) => (
                   <p key={idx} className="md:text-2xl text-xl font-medium">
                     {text}
