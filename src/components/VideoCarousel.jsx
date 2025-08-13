@@ -22,13 +22,19 @@ const VideoCarousel = () => {
   const { isEnd, startPlay, videoId, isLastVideo, isPlaying } = video;
 
   useGSAP(() => {
+    gsap.to("#slider", {
+      transform: `translateX(${-100 * videoId}%)`,
+      duration: 2,
+      ease: "power2.inOut",
+    });
+
     gsap.to("#video", {
       scrollTrigger: {
         trigger: "#video",
         toggleActions: "restart none none none",
       },
       onComplete: () => {
-        setVideo((prev) => ({ ...prev, startPlay: true, isPlaying: true }));
+        setVideo((prev) => ({ ...prev, startPlay: true, isPlaying: true })); //only plays the video when the user reaches the video container
       },
     });
   }, [isEnd, videoId]);
@@ -50,7 +56,7 @@ const VideoCarousel = () => {
     if (span[videoId]) {
       let anim = gsap.to(span[videoId], {
         onUpdate: () => {
-          const progress = Math.ceil(anim.progress() * 1000);
+          const progress = Math.ceil(anim.progress() * 100);
 
           if (progress !== currentProgress) {
             currentProgress = progress;
@@ -63,14 +69,41 @@ const VideoCarousel = () => {
                   ? "10vw"
                   : "4vw",
             });
+
+            gsap.to(span[videoId], {
+              width: `${currentProgress}%`,
+              backgroundColor: "#fff",
+            });
           }
         },
-        onComplete: () => {},
+        onComplete: () => {
+          if (isPlaying) {
+            gsap.to(videoDivRef.current[videoId], {
+              width: "12px",
+            });
+
+            gsap.to(span[videoId], {
+              backgroundColor: "#afafaf",
+            });
+          }
+        },
       });
+
+      videoId === 0 && anim.restart();
+
+      const animUpdate = () => {
+        anim.progress(
+          videoRef.current[videoId].currentTime /
+            highlightsSlides[videoId].videoDuration
+        );
+      };
+
+      isPlaying ? gsap.ticker.add(animUpdate) : gsap.ticker.remove(animUpdate);
+      gsap.ticker.remove(animUpdate);
     }
   }, [videoId, startPlay]);
 
-  const handleLoadedMetadata = (index, event) =>
+  const handleLoadedMetadata = (_, event) =>
     setLoadedData((prev) => [...prev, event]);
 
   const handleProcess = (processType, index) => {
@@ -97,8 +130,7 @@ const VideoCarousel = () => {
       case "pause":
         setVideo((video) => ({
           ...video,
-          isPlaying: false,
-          videoId: index + 1,
+          isPlaying: !video.isPlaying,
         }));
         break;
 
@@ -108,7 +140,7 @@ const VideoCarousel = () => {
   };
   return (
     <>
-      <div className="flex items-center">
+      <div className="flex items-center md:ml-[18vw]">
         {highlightsSlides.map((list, index) => (
           <div key={list.id} id="slider" className="sm:pr-20 pr-10">
             <div className="video-carousel_container">
@@ -121,6 +153,14 @@ const VideoCarousel = () => {
                       isPlaying: true,
                     }));
                   }}
+                  onEnded={() =>
+                    index !== 3
+                      ? handleProcess("end", index)
+                      : handleProcess("last")
+                  }
+                  className={`${
+                    list.id === 2 && "translate-x-44"
+                  } pointer-events-none`}
                   id="video"
                   playsInline={true}
                   preload="auto"
