@@ -1,9 +1,12 @@
-import { useRef, useState } from "react";
 import ModelView from "./ModelView";
 import gsap from "gsap";
+import * as THREE from "three";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { yellowImg } from "../utils";
-import * as THREE from 'three'
+import { View } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { models } from "../constants";
 
 function Model() {
   const [size, setSize] = useState("small");
@@ -28,7 +31,10 @@ function Model() {
   const small = useRef(new THREE.Group());
   const large = useRef(new THREE.Group());
 
-  
+  //rotation
+  const [smallRotation, setSmallRotation] = useState(0);
+  const [largeRotation, setLargeRotation] = useState(0);
+
   return (
     <section className="common-padding">
       <div className="screen-max-width">
@@ -38,7 +44,58 @@ function Model() {
 
         <div className="flex flex-col items-center mt-5">
           <div className="w-full h-[75vh] md:h-[90vh] overflow-hidden relative">
-            <ModelView />
+            <ModelView
+              index={1}
+              groupRef={small}
+              gsapType="view1"
+              controlRef={cameraControlSmall}
+              setRotationState={setSmallRotation}
+              item={model}
+              size={size}
+            />
+
+            <ModelView
+              index={2}
+              groupRef={large}
+              gsapType="view2"
+              controlRef={cameraControlLarge}
+              setRotationState={setLargeRotation}
+              item={model}
+              size={size}
+            />
+
+            <Canvas
+              className="w-full h-full"
+              style={{
+                position: "fixed",
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
+                overflow: "hidden",
+              }}
+              eventSource={document.getElementById("root")}
+            >
+              <View.Port />
+            </Canvas>
+          </div>
+
+          <div className="mx-auto w-full">
+            <p className="text-sm font-light text-center mb-5">{model.title}</p>
+            <div className="flex-center ">
+              <ul className="color-container">
+                {models.map((model, index) => (
+                  <li
+                    key={index}
+                    className="w-6 h-6 rounded-full mx-2"
+                    style={{
+                      backgroundColor: model.color[0],
+                    }}
+                    onClick={() => setModel(model)}
+                  ></li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
