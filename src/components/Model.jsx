@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { yellowImg } from "../utils";
 import { View } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { models } from "../constants";
+import { models, sizes } from "../constants";
 
 function Model() {
   const [size, setSize] = useState("small");
@@ -82,12 +82,12 @@ function Model() {
 
           <div className="mx-auto w-full">
             <p className="text-sm font-light text-center mb-5">{model.title}</p>
-            <div className="flex-center ">
+            <div className="flex-center">
               <ul className="color-container">
                 {models.map((model, index) => (
                   <li
                     key={index}
-                    className="w-6 h-6 rounded-full mx-2"
+                    className="w-6 h-6 rounded-full mx-2 cursor-pointer"
                     style={{
                       backgroundColor: model.color[0],
                     }}
@@ -95,6 +95,22 @@ function Model() {
                   ></li>
                 ))}
               </ul>
+
+              <button className="size-btn-container cursor-pointer">
+                {sizes.map(({ label, value }, index) => (
+                  <span
+                    key={index}
+                    className="size-btn"
+                    style={{
+                      backgroundColor: size === value ? "white" : "transparent",
+                      color: size === value ? "black" : "white",
+                    }}
+                    onClick={() => setSize(value)}
+                  >
+                    {label}
+                  </span>
+                ))}
+              </button>
             </div>
           </div>
         </div>
