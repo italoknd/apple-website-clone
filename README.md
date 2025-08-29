@@ -1,4 +1,4 @@
-#  Apple Website Clone
+# <img src="[https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg](https://external-preview.redd.it/ITf79KByq_PMY-6EGoapCmEO8cYc68ORP5Cc8dzLAKk.jpg?auto=webp&s=af6ae475c271a6d0efdf6a45cdefa8aabd16c4c2)" width="50"/>Apple Website Clone
 
 A modern front-end clone inspired by Apple’s product landing pages. Built with a focus on responsiveness, smooth UX, and clean, scalable architecture using React + Vite + Tailwind CSS.
 
@@ -9,8 +9,8 @@ A modern front-end clone inspired by Apple’s product landing pages. Built with
 - [React](https://react.dev/)
 - [Vite](https://vitejs.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- Vanilla JavaScript (ES202x)
-- HTML5 & CSS3
+- [GSAP](https://gsap.com/)
+- [Three JS](https://threejs.org/)
 
 ---
 
@@ -29,12 +29,9 @@ Optional: add screenshots to /public and uncomment below
 
 ## ⚙️ Features
 
-- 🧭 Sticky header & smooth navigation
 - 🖼️ Hero sections with responsive imagery
 - 📱 Fully responsive layout (mobile-first)
 - 🧩 Reusable, composable components
-- ⚡ Fast dev & build pipeline with Vite
-- 🎯 Accessible markup and sensible semantics
 
 ---
 
