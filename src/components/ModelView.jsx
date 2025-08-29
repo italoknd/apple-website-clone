@@ -9,6 +9,7 @@ import {
 
 import IPhone from "./IPhone";
 import Lights from "./Lights";
+import Loading from "./Loader";
 
 function ModelView({
   index,
@@ -24,7 +25,7 @@ function ModelView({
       <View
         index={index}
         id={gsapType}
-        className={`w-full h-[75vh] md:h-[90vh] ${
+        className={`absolute w-full h-[75vh] md:h-[90vh] ${
           index === 2 ? "right-[-100%]" : ""
         }`}
       >
@@ -50,7 +51,7 @@ function ModelView({
           <Suspense
             fallback={
               <Html>
-                <div>Loading...</div>
+                <Loading />
               </Html>
             }
           >
