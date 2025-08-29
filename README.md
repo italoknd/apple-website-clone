@@ -1,6 +1,6 @@
 # <img src="[https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg](https://external-preview.redd.it/ITf79KByq_PMY-6EGoapCmEO8cYc68ORP5Cc8dzLAKk.jpg?auto=webp&s=af6ae475c271a6d0efdf6a45cdefa8aabd16c4c2)" width="50"/>Apple Website Clone
 
-A modern front-end clone inspired by Apple’s product landing pages. Built with a focus on responsiveness, smooth UX, and clean, scalable architecture using React + Vite + Tailwind CSS.
+A modern front-end clone inspired by Apple’s product landing pages. Built with a focus on responsiveness, smooth UX, and clean, scalable architecture using React + Vite + Tailwind CSS, GSAP and Three JS.
 
 ---
 
