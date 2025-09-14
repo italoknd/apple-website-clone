@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar.jsx";
 import Highlights from "./components/Highlights.jsx";
 import Model from "./components/Model.jsx";
 import Features from "./components/Features.jsx";
+import HowItWorks from "./components/HowItWorks.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <Highlights />
       <Model />
       <Features />
+      <HowItWorks />
+      <Footer />
     </main>
   );
 }
