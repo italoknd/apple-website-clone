@@ -1,16 +1,16 @@
 import { rightImg, watchImg } from "../utils";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import VideoCarousel from "./VideoCarousel";
+import { animateWithGSAP } from "../utils/animations";
 
 const Hightlights = () => {
   useGSAP(() => {
-    gsap.to("#title", {
+    animateWithGSAP("#title", {
       opacity: 1,
       y: 0,
     });
 
-    gsap.to(".link", {
+    animateWithGSAP(".link", {
       opacity: 1,
       y: 0,
       duration: 1,

@@ -7,7 +7,7 @@ import { yellowImg } from "../utils";
 import { View } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { models, sizes } from "../constants";
-import { animateWithGSAPTimeline } from "../utils/animations";
+import { animateWithGSAP, animateWithGSAPTimeline } from "../utils/animations";
 
 function Model() {
   const [size, setSize] = useState("small");
@@ -18,7 +18,7 @@ function Model() {
   });
 
   useGSAP(() => {
-    gsap.to("#heading", {
+    animateWithGSAP("#heading", {
       y: 0,
       opacity: 1,
     });
