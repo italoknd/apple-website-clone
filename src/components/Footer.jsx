@@ -24,10 +24,10 @@ function Footer() {
             <p className="font-semibold text-gray-300 text-xs">
               Copiright @ 2025 Apple Inc. All rights reserved.
             </p>
-            <div className="flex gap-5">
+            <div className="flex gap-5 mt-1 md:mt-0">
               {footerLinks.map((link, index) => (
-                <p key={index} className="font-semibold text-gray text-xs ">
-                  {link}{" "}
+                <p key={index} className="font-semibold text-gray text-xs">
+                  {link}
                 </p>
               ))}
             </div>
